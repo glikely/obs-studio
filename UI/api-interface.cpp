@@ -73,6 +73,17 @@ struct OBSStudioAPI : obs_frontend_callbacks {
 		return (void *)main->trayIcon.data();
 	}
 
+	void *obs_frontend_new_properties_view(obs_data_t *od,
+			void *type,
+			PropertiesReloadCallback reloadCallback,
+			PropertiesUpdateCallback callback,
+			PropertiesVisualUpdateCb cb,
+			int minSize) override
+	{
+		return (void *) new OBSPropertiesView(od, type,
+				reloadCallback, callback, cb, minSize);
+	}
+
 	void obs_frontend_get_scenes(
 		struct obs_frontend_source_list *sources) override
 	{

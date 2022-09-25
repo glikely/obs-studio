@@ -75,6 +75,18 @@ void *obs_frontend_get_system_tray(void)
 				   : nullptr;
 }
 
+void *obs_frontend_new_properties_view(obs_data_t *od,
+			void *type,
+			PropertiesReloadCallback reloadCallback,
+			PropertiesUpdateCallback callback,
+			PropertiesVisualUpdateCb cb,
+			int minSize)
+{
+	return !!callbacks_valid() ? c->obs_frontend_new_properties_view(od,
+			type, reloadCallback, callback, cb, minSize)
+				   : nullptr;
+}
+
 char **obs_frontend_get_scene_names(void)
 {
 	if (!callbacks_valid())

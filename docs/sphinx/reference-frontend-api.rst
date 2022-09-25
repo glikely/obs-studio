@@ -239,6 +239,21 @@ Functions
 
 ---------------------------------------
 
+.. function:: void *obs_frontend_new_properties_view(obs_data_t *prop_data,
+   void *type,
+   PropertiesReloadCallback reload_callback,
+   PropertiesUpdateCallback update_callback,
+   PropertiesVisualUpdateCB visual_update_callback,
+   int minSize)
+
+   Creates a new OBSPropertyView widget that can be added to a layout.
+   The resulting widget is returned as a `void*` that can be cast to a `QWidget*`
+
+   :return: A `void*` pointer to the new OBSPropertiesView widget, or NULL if creation failed.
+            The return value is a `void*` that needs to be cast to `QWidget*` before use.
+
+---------------------------------------
+
 .. function:: char **obs_frontend_get_scene_names(void)
 
    :return: The scene name list, ending with NULL.  The list is stored

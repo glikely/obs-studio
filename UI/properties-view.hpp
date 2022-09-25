@@ -2,6 +2,7 @@
 
 #include "vertical-scroll-area.hpp"
 #include <obs-data.h>
+#include <obs-frontend-api.h>
 #include <obs.hpp>
 #include <qtimer.h>
 #include <QPointer>
@@ -11,11 +12,6 @@
 class QFormLayout;
 class OBSPropertiesView;
 class QLabel;
-
-typedef obs_properties_t *(*PropertiesReloadCallback)(void *obj);
-typedef void (*PropertiesUpdateCallback)(void *obj, obs_data_t *old_settings,
-					 obs_data_t *new_settings);
-typedef void (*PropertiesVisualUpdateCb)(void *obj, obs_data_t *settings);
 
 /* ------------------------------------------------------------------------- */
 

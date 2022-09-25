@@ -13,6 +13,14 @@ typedef struct config_data config_t;
 struct obs_data;
 typedef struct obs_data obs_data_t;
 
+struct obs_properties;
+typedef struct obs_properties obs_properties_t;
+
+typedef obs_properties_t *(*PropertiesReloadCallback)(void *obj);
+typedef void (*PropertiesUpdateCallback)(void *obj, obs_data_t *old_settings,
+					 obs_data_t *new_settings);
+typedef void (*PropertiesVisualUpdateCb)(void *obj, obs_data_t *settings);
+
 enum obs_frontend_event {
 	OBS_FRONTEND_EVENT_STREAMING_STARTING,
 	OBS_FRONTEND_EVENT_STREAMING_STARTED,
@@ -99,6 +107,13 @@ obs_frontend_source_list_free(struct obs_frontend_source_list *source_list)
 EXPORT void *obs_frontend_get_main_window(void);
 EXPORT void *obs_frontend_get_main_window_handle(void);
 EXPORT void *obs_frontend_get_system_tray(void);
+
+EXPORT void *obs_frontend_new_properties_view(obs_data_t *od,
+			void *type,
+			PropertiesReloadCallback reloadCallback,
+			PropertiesUpdateCallback callback,
+			PropertiesVisualUpdateCb cb,
+			int minSize);
 
 EXPORT char **obs_frontend_get_scene_names(void);
 EXPORT void obs_frontend_get_scenes(struct obs_frontend_source_list *sources);

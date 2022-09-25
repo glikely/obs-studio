@@ -496,10 +496,10 @@ void ScriptsTool::on_scripts_currentRowChanged(int row)
 
 	OBSDataAutoRelease settings = obs_script_get_settings(script);
 
-	propertiesView = new OBSPropertiesView(
+	propertiesView = static_cast<QWidget*>(obs_frontend_new_properties_view(
 		settings.Get(), script,
 		(PropertiesReloadCallback)obs_script_get_properties, nullptr,
-		(PropertiesVisualUpdateCb)obs_script_update);
+		(PropertiesVisualUpdateCb)obs_script_update, 0));
 	ui->propertiesLayout->addWidget(propertiesView);
 	ui->description->setText(obs_script_get_description(script));
 }
